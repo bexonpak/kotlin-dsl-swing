@@ -47,7 +47,7 @@ inline fun MenuBar.menu(label: String = "", init: Menu.() -> Unit): Menu = Menu(
     init()
 }.also { add(it) }
 
-inline fun JFrame.menuBar(init: MenuBar.() -> Unit): MenuBar = MenuBar().apply {
+inline fun menuBar(init: MenuBar.() -> Unit): MenuBar = MenuBar().apply {
     init()
 }
 
@@ -58,7 +58,7 @@ inline fun Menu.menuItem(label: String, init: MenuItem.() -> Unit, noinline acti
         init()
     }.also { add(it) }
 
-inline fun alert(frame: JFrame?, msg: String = "") {
+fun alert(frame: JFrame?, msg: String = "") {
     JOptionPane.showMessageDialog(frame, msg)
 }
 

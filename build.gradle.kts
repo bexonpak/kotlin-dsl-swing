@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.panteleyev.jpackageplugin") version "1.3.1"
     kotlin("jvm") version "1.4.32"
 }
 
@@ -32,24 +31,11 @@ task("copyJar", Copy::class) {
     from(tasks.jar).into("$buildDir/jmods")
 }
 
-tasks.jpackage {
-    dependsOn("build", "copyDependencies", "copyJar")
-
-    appName = "Test App"
-    appVersion = project.version.toString()
-    vendor = "dt.bexon"
-    copyright = "Copyright (c) 2020 Bexon Pak"
-    runtimeImage = System.getProperty("java.home")
-    module = "org.dt.bexon.blg/org.dt.bexon.blg.MainKt"
-    modulePaths = listOf("$buildDir/jmods")
-    destination = "$buildDir/dist"
-    javaOptions = listOf("-Dfile.encoding=UTF-8")
-
-    mac {
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "org.dt.bexon.blg.MainKt"
     }
-
-    windows {
-        winMenu = true
-        winDirChooser = true
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
     }
 }
