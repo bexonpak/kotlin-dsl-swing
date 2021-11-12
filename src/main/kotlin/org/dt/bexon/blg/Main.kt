@@ -5,12 +5,15 @@ import java.awt.MenuShortcut
 import java.awt.event.KeyEvent
 import javax.swing.JFrame
 import javax.swing.border.EmptyBorder
+import kotlin.properties.Delegates
+import kotlin.reflect.KProperty
 
 fun main() {
     MainView()
 }
 
 class MainView : JFrame() {
+
     init {
         System.setProperty("apple.awt.application.name", "Test App")
         System.setProperty("apple.laf.useScreenMenuBar", "true")

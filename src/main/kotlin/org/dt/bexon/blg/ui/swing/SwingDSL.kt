@@ -23,18 +23,19 @@ inline fun JPanel.label(label: String = "", init: JLabel.() -> Unit): JLabel = J
     init()
 }.also { add(it) }
 
-inline fun JPanel.button(text: String = "", init: JButton.() -> Unit): JButton = JButton(text).apply {
+inline fun JPanel.button(text: String = "", init: JButton.() -> Unit, noinline action: ((ActionEvent) -> Unit)): JButton = JButton(text).apply {
+    addActionListener(action)
     init()
 }.also { add(it) }
 
 inline fun JPanel.link(text: String = "", uri: String = "", init: JButton.() -> Unit): JButton = JButton(text).apply {
     this.text = text
-    this.setHorizontalAlignment(SwingConstants.LEFT)
-    this.isBorderPainted = false
-    this.isOpaque = false
-    this.background = Color.WHITE
-    this.toolTipText = uri
-    this.addActionListener {
+    setHorizontalAlignment(SwingConstants.LEFT)
+    isBorderPainted = false
+    isOpaque = false
+    background = Color.WHITE
+    toolTipText = uri
+    addActionListener {
         try {
             Desktop.getDesktop().browse(URI(uri))
         } catch (e: Exception) {
