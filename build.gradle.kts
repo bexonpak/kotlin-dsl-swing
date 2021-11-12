@@ -46,11 +46,9 @@ tasks.jpackage {
     javaOptions = listOf("-Dfile.encoding=UTF-8")
 
     mac {
-//        icon = "icons/icons.icns"
     }
 
     windows {
-//        icon = "icons/icons.ico"
         winMenu = true
         winDirChooser = true
     }

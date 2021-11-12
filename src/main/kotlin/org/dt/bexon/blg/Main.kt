@@ -24,7 +24,7 @@ class MainView : JFrame() {
                     menuItem("click me", {
                         shortcut = MenuShortcut(KeyEvent.VK_A, true)
                     }) {
-                        alert(this@frame, "Thank you for using swing.");
+                        alert(this@frame, "Thank you for using swing.")
                     }
                 }
             }
@@ -38,7 +38,7 @@ class MainView : JFrame() {
                     bounds = rectangle(10, 10, 146 x 14)
                 }
 
-                link("🌏 Open in github.", "https://github.com") {
+                link("🌏 Open in github.", "https://github.com/bexonpak/kotlin-dsl-swing") {
                     bounds = rectangle(10, 100, 146 x 24)
                 }
             }
